@@ -14,6 +14,15 @@
 		6EC75C7A2885E40800C7A636 /* SwiftUI_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC75C792885E40800C7A636 /* SwiftUI_TestTests.swift */; };
 		6EC75C842885E40800C7A636 /* SwiftUI_TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC75C832885E40800C7A636 /* SwiftUI_TestUITests.swift */; };
 		6EC75C862885E40800C7A636 /* SwiftUI_TestUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC75C852885E40800C7A636 /* SwiftUI_TestUITestsLaunchTests.swift */; };
+		6EC75C932886FE9500C7A636 /* LargeAppBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC75C922886FE9500C7A636 /* LargeAppBannerView.swift */; };
+		6EC75C952886FED400C7A636 /* HalfAppBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC75C942886FED400C7A636 /* HalfAppBannerView.swift */; };
+		6EC75C972886FF0000C7A636 /* SmallAppBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC75C962886FF0000C7A636 /* SmallAppBannerView.swift */; };
+		6EC75C992886FF2A00C7A636 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC75C982886FF2A00C7A636 /* HomeView.swift */; };
+		6EC75C9B2886FF3D00C7A636 /* AppLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC75C9A2886FF3D00C7A636 /* AppLibraryView.swift */; };
+		6EC75C9D2886FF7900C7A636 /* IPAStoreVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC75C9C2886FF7800C7A636 /* IPAStoreVIew.swift */; };
+		6EC75C9F2886FF8E00C7A636 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC75C9E2886FF8E00C7A636 /* SettingsView.swift */; };
+		6EC75CA12886FFA100C7A636 /* FAQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC75CA02886FFA100C7A636 /* FAQView.swift */; };
+		6EC75CA32886FFB600C7A636 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC75CA22886FFB600C7A636 /* AboutView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +54,15 @@
 		6EC75C7F2885E40800C7A636 /* SwiftUI TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftUI TestUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EC75C832885E40800C7A636 /* SwiftUI_TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_TestUITests.swift; sourceTree = "<group>"; };
 		6EC75C852885E40800C7A636 /* SwiftUI_TestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_TestUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6EC75C922886FE9500C7A636 /* LargeAppBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAppBannerView.swift; sourceTree = "<group>"; };
+		6EC75C942886FED400C7A636 /* HalfAppBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfAppBannerView.swift; sourceTree = "<group>"; };
+		6EC75C962886FF0000C7A636 /* SmallAppBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallAppBannerView.swift; sourceTree = "<group>"; };
+		6EC75C982886FF2A00C7A636 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		6EC75C9A2886FF3D00C7A636 /* AppLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLibraryView.swift; sourceTree = "<group>"; };
+		6EC75C9C2886FF7800C7A636 /* IPAStoreVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPAStoreVIew.swift; sourceTree = "<group>"; };
+		6EC75C9E2886FF8E00C7A636 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		6EC75CA02886FFA100C7A636 /* FAQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQView.swift; sourceTree = "<group>"; };
+		6EC75CA22886FFB600C7A636 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +118,15 @@
 				6EC75C6B2885E40800C7A636 /* Assets.xcassets */,
 				6EC75C702885E40800C7A636 /* SwiftUI_Test.entitlements */,
 				6EC75C6D2885E40800C7A636 /* Preview Content */,
+				6EC75C922886FE9500C7A636 /* LargeAppBannerView.swift */,
+				6EC75C942886FED400C7A636 /* HalfAppBannerView.swift */,
+				6EC75C962886FF0000C7A636 /* SmallAppBannerView.swift */,
+				6EC75C982886FF2A00C7A636 /* HomeView.swift */,
+				6EC75C9A2886FF3D00C7A636 /* AppLibraryView.swift */,
+				6EC75C9C2886FF7800C7A636 /* IPAStoreVIew.swift */,
+				6EC75C9E2886FF8E00C7A636 /* SettingsView.swift */,
+				6EC75CA02886FFA100C7A636 /* FAQView.swift */,
+				6EC75CA22886FFB600C7A636 /* AboutView.swift */,
 			);
 			path = "SwiftUI Test";
 			sourceTree = "<group>";
@@ -261,6 +288,15 @@
 			files = (
 				6EC75C6A2885E40600C7A636 /* ContentView.swift in Sources */,
 				6EC75C682885E40600C7A636 /* SwiftUI_TestApp.swift in Sources */,
+				6EC75CA32886FFB600C7A636 /* AboutView.swift in Sources */,
+				6EC75C972886FF0000C7A636 /* SmallAppBannerView.swift in Sources */,
+				6EC75CA12886FFA100C7A636 /* FAQView.swift in Sources */,
+				6EC75C9F2886FF8E00C7A636 /* SettingsView.swift in Sources */,
+				6EC75C992886FF2A00C7A636 /* HomeView.swift in Sources */,
+				6EC75C932886FE9500C7A636 /* LargeAppBannerView.swift in Sources */,
+				6EC75C9B2886FF3D00C7A636 /* AppLibraryView.swift in Sources */,
+				6EC75C952886FED400C7A636 /* HalfAppBannerView.swift in Sources */,
+				6EC75C9D2886FF7900C7A636 /* IPAStoreVIew.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
