@@ -52,59 +52,60 @@ struct ContentView: View {
                     HomeView()
                         .navigationTitle("Home")
                 }, label: {
-                   SidebarButtonView(title: "Home", iconName: "house")
+                   Label("Home", systemImage: "house")
                 })
-                .padding(.vertical)
-                .buttonStyle(PlainButtonStyle())
-                NavigationLink(destination: {
-                    AppLibraryView()
-                        .navigationTitle("App Library")
-                        .toolbar {
-                            ToolbarItem(placement: .primaryAction) {
-                                Button(action: {}, label: {
-                                    Image(systemName: "square.grid.2x2")
-                                })
+                Section(header: Text("PlayCover")) {
+                    NavigationLink(destination: {
+                        AppLibraryView()
+                            .navigationTitle("App Library")
+                            .toolbar {
+                                ToolbarItem(placement: .primaryAction) {
+                                    Button(action: {}, label: {
+                                        Image(systemName: "square.grid.2x2")
+                                    })
+                                }
+                                ToolbarItem(placement: .primaryAction) {
+                                    Button(action: {}, label: {
+                                        Image(systemName: "list.bullet")
+                                    })
+                                }
                             }
-                            ToolbarItem(placement: .primaryAction) {
-                                Button(action: {}, label: {
-                                    Image(systemName: "list.bullet")
-                                })
-                            }
-                        }
-                    
-                }, label: {
-                   SidebarButtonView(title: "App Library", iconName: "square.grid.2x2")
-                })
-                .padding(.vertical)
-                .buttonStyle(PlainButtonStyle())
-                NavigationLink(destination: {
-                    IPAStoreView()
-                        .navigationTitle("IPA Store")
-                    
-                }, label: {
-                   SidebarButtonView(title: "IPA Store", iconName: "arrow.down.circle")
-                })
-                .padding(.vertical)
-                .buttonStyle(PlainButtonStyle())
-                NavigationLink(destination: {
-                    SettingsView()
-                        .navigationTitle("Settings")
-                    
-                }, label: {
-                   SidebarButtonView(title: "Settings", iconName: "gear")
-                })
-                .padding(.vertical)
-                .buttonStyle(PlainButtonStyle())
-                NavigationLink(destination: {
-                    AboutView()
-                        .navigationTitle("About")
-                    
-                }, label: {
-                   SidebarButtonView(title: "About", iconName: "info.circle")
-                })
-                .padding(.vertical)
-                .buttonStyle(PlainButtonStyle())
-                Spacer()
+                        
+                    }, label: {
+                        Label("App Library", systemImage: "square.grid.2x2")
+                    })
+                    NavigationLink(destination: {
+                        IPAStoreView()
+                            .navigationTitle("IPA Store")
+                        
+                    }, label: {
+                        Label("IPA Store", systemImage: "arrow.down.circle")
+                    })
+                    NavigationLink(destination: {
+                        SettingsView()
+                            .navigationTitle("Settings")
+                        
+                    }, label: {
+                        Label("Settings", systemImage: "gear")
+                    })
+                }
+                
+                Section(header: Text("Help & Support")) {
+                    NavigationLink(destination: {
+                        FAQView()
+                            .navigationTitle("FAQs")
+                        
+                    }, label: {
+                        Label("FAQs", systemImage: "questionmark.circle")
+                    })
+                    NavigationLink(destination: {
+                        AboutView()
+                            .navigationTitle("About")
+                        
+                    }, label: {
+                        Label("About", systemImage: "info.circle")
+                    })
+                }
             }
             HomeView()
         }
@@ -122,24 +123,6 @@ struct ContentView: View {
     
     private func toggleSidebar() {
         NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
-    }
-}
-
-struct SidebarButtonView: View {
-    let title: String
-    let iconName: String
-    
-    var body: some View {
-        HStack {
-            Image(systemName: iconName)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 20)
-                .foregroundColor(.cyan)
-            Text(title)
-                .foregroundColor(.white)
-            Spacer()
-        }
     }
 }
 
@@ -198,7 +181,8 @@ struct HalfAppBannerView: View {
                     .foregroundColor(.white)
                 Spacer()
                     .frame(height: 10)
-                Text("OPEN")
+                Text("Open")
+                    .textCase(.uppercase)
                     .foregroundColor(.blue)
                     .padding(.horizontal, 20)
                     .padding(.vertical, 5)
@@ -238,7 +222,8 @@ struct SmallAppBannerView: View {
                     .foregroundColor(.gray)
             }
             Spacer()
-            Text("GET")
+            Text("Open")
+                .textCase(.uppercase)
                 .foregroundColor(.blue)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 5)
@@ -270,7 +255,7 @@ struct HomeView: View {
                 Divider()
                     .padding(.vertical)
                 HStack {
-                    Text("Popular IPAs")
+                    Text("Recently Opened Apps")
                         .font(.title2)
                         .fontWeight(.semibold)
                     Spacer()
@@ -353,6 +338,16 @@ struct SettingsView: View {
                     Text("Language")
                     Spacer()
                 }
+            }
+            .padding(.all)
+        }
+    }
+}
+
+struct FAQView: View {
+    var body: some View {
+        ScrollView {
+            VStack {
             }
             .padding(.all)
         }
