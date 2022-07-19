@@ -7,11 +7,6 @@
 
 import SwiftUI
 
-struct Options: Hashable {
-    let title: String
-    let imageName: String
-}
-
 enum AppCategory : CustomStringConvertible {
     case Business, Entertainment, Graphics, Medical, Photo, Travel, Dev, Finance, Health, Music, Productivity, Social, Utilities, Education, Games, Lifestyle, News, Reference, Sports, Weather
     
@@ -49,20 +44,11 @@ struct AppData: Hashable {
 }
 
 struct ContentView: View {
-    let options: [Options] = [
-        .init(title: "Home", imageName: "house"),
-        .init(title: "App Library", imageName: "square.grid.2x2"),
-        .init(title: "IPA Store", imageName: "arrow.down.circle"),
-        .init(title: "Settings", imageName: "gear"),
-        .init(title: "About", imageName: "info.circle"),
-    ]
-    
     var body: some View {
         // Deprecated
         NavigationView {
-            ListView(options: options)
-            
-            MainView()
+            ListView()
+            HomeView()
         }
         .frame(minWidth: 800, minHeight: 500)
         .toolbar {
@@ -81,24 +67,65 @@ struct ContentView: View {
     }
 }
 
-struct ListView: View {
-    let options: [Options]
+struct SidebarButtonView: View {
+    let title: String
+    let iconName: String
     
     var body: some View {
+        HStack {
+            Image(systemName: iconName)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 20)
+                .foregroundColor(.cyan)
+            Text(title)
+            Spacer()
+        }
+    }
+}
+
+struct ListView: View {
+    var body: some View {
         VStack {
-            ForEach(options, id: \.self) { option in
-                HStack {
-                    Image(systemName: option.imageName)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 20)
-                        .foregroundColor(.cyan)
-                    Text(option.title)
-                    Spacer()
-                }
-                .padding([.top, .leading, .trailing])
+            NavigationLink(destination: {
+                HomeView()
+            }, label: {
+               SidebarButtonView(title: "Home", iconName: "house")
+            })
+            .padding([.top, .leading, .trailing])
+            .buttonStyle(PlainButtonStyle())
+            NavigationLink(destination: {
+                AppLibraryView()
                 
-            }
+            }, label: {
+               SidebarButtonView(title: "App Library", iconName: "square.grid.2x2")
+            })
+            .padding([.top, .leading, .trailing])
+            .buttonStyle(PlainButtonStyle())
+            NavigationLink(destination: {
+                IPAStoreView()
+                
+            }, label: {
+               SidebarButtonView(title: "IPA Store", iconName: "arrow.down.circle")
+            })
+            .padding([.top, .leading, .trailing])
+            .buttonStyle(PlainButtonStyle())
+            NavigationLink(destination: {
+                SettingsView()
+                
+            }, label: {
+               SidebarButtonView(title: "Settings", iconName: "gear")
+            })
+            .padding([.top, .leading, .trailing])
+            .buttonStyle(PlainButtonStyle())
+            NavigationLink(destination: {
+                AboutView()
+                
+            }, label: {
+               SidebarButtonView(title: "About", iconName: "info.circle")
+            })
+            .padding([.top, .leading, .trailing])
+            .buttonStyle(PlainButtonStyle())
             Spacer()
         }
     }
@@ -210,7 +237,7 @@ struct SmallAppBannerView: View {
     }
 }
 
-struct MainView: View {
+struct HomeView: View {
     let GenshinImpact = AppData (name: "Genshin Impact", iconName: "Genshin", category: AppCategory.Games, version: "2.8.0")
     let AmongUs = AppData (name: "Among Us", iconName: "Among Us", category: AppCategory.Games, version: "1.0")
     let Twitch = AppData(name: "Twitch", iconName: "Twitch", category: AppCategory.Photo, version: "1.0")
@@ -263,9 +290,32 @@ struct MainView: View {
     }
 }
 
+struct AppLibraryView: View {
+    var body: some View {
+        Text("App Library")
+    }
+}
+
+struct IPAStoreView: View {
+    var body: some View {
+        Text("IPA Store")
+    }
+}
+
+struct SettingsView: View {
+    var body: some View {
+        Text("Settings")
+    }
+}
+
+struct AboutView: View {
+    var body: some View {
+        Text("About")
+    }
+}
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            
     }
 }
