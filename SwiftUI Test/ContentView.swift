@@ -59,7 +59,6 @@ struct ContentView: View {
             }
         }
         .navigationTitle("Home")
-        
     }
     
     private func toggleSidebar() {
@@ -89,6 +88,7 @@ struct ListView: View {
         VStack {
             NavigationLink(destination: {
                 HomeView()
+                    .navigationTitle("Home")
             }, label: {
                SidebarButtonView(title: "Home", iconName: "house")
             })
@@ -96,6 +96,19 @@ struct ListView: View {
             .buttonStyle(PlainButtonStyle())
             NavigationLink(destination: {
                 AppLibraryView()
+                    .navigationTitle("App Library")
+                    .toolbar {
+                        ToolbarItem(placement: .primaryAction) {
+                            Button(action: {}, label: {
+                                Image(systemName: "square.grid.2x2")
+                            })
+                        }
+                        ToolbarItem(placement: .primaryAction) {
+                            Button(action: {}, label: {
+                                Image(systemName: "list.bullet")
+                            })
+                        }
+                    }
                 
             }, label: {
                SidebarButtonView(title: "App Library", iconName: "square.grid.2x2")
@@ -104,6 +117,7 @@ struct ListView: View {
             .buttonStyle(PlainButtonStyle())
             NavigationLink(destination: {
                 IPAStoreView()
+                    .navigationTitle("IPA Store")
                 
             }, label: {
                SidebarButtonView(title: "IPA Store", iconName: "arrow.down.circle")
@@ -112,6 +126,7 @@ struct ListView: View {
             .buttonStyle(PlainButtonStyle())
             NavigationLink(destination: {
                 SettingsView()
+                    .navigationTitle("Settings")
                 
             }, label: {
                SidebarButtonView(title: "Settings", iconName: "gear")
@@ -120,6 +135,7 @@ struct ListView: View {
             .buttonStyle(PlainButtonStyle())
             NavigationLink(destination: {
                 AboutView()
+                    .navigationTitle("About")
                 
             }, label: {
                SidebarButtonView(title: "About", iconName: "info.circle")
