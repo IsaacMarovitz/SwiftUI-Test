@@ -292,25 +292,82 @@ struct HomeView: View {
 
 struct AppLibraryView: View {
     var body: some View {
-        Text("App Library")
+        ScrollView {
+            // Toolbar buttons grid or list
+            Text("App Library")
+        }
     }
 }
 
 struct IPAStoreView: View {
     var body: some View {
-        Text("IPA Store")
+        ScrollView {
+            Text("IPA Store")
+        }
     }
 }
 
 struct SettingsView: View {
     var body: some View {
-        Text("Settings")
+        ScrollView {
+            VStack {
+                HStack {
+                    Text("Appearance")
+                        
+                    Spacer()
+                    
+                }
+                Spacer()
+                    .frame(height: 20)
+                HStack {
+                    Text("Accent Color")
+                    Spacer()
+                }
+            }
+            .padding(.all)
+            Divider()
+                .padding(.all)
+            VStack {
+                HStack {
+                    Text("Discord RPC")
+                        
+                    Spacer()
+                    
+                }
+                Spacer()
+                    .frame(height: 20)
+                HStack {
+                    Text("Language")
+                    Spacer()
+                }
+            }
+            .padding(.all)
+        }
     }
 }
 
 struct AboutView: View {
     var body: some View {
-        Text("About")
+        ScrollView {
+            VStack {
+                HStack {
+                    Text("Ludere was created through the contributions of many developers and artists.")
+                    Spacer()
+                }
+                Spacer()
+                    .frame(height: 20)
+                HStack {
+                    Text("Discord @s, Modules used yayadada")
+                    Spacer()
+                }
+                Spacer()
+                    .frame(height: 20)
+                HStack {
+                    Text("discord, website, github links go here lol")
+                }
+            }
+            .padding(.all)
+        }
     }
 }
 
