@@ -7,15 +7,265 @@
 
 import SwiftUI
 
+struct Options: Hashable {
+    let title: String
+    let imageName: String
+}
+
+enum AppCategory : CustomStringConvertible {
+    case Business, Entertainment, Graphics, Medical, Photo, Travel, Dev, Finance, Health, Music, Productivity, Social, Utilities, Education, Games, Lifestyle, News, Reference, Sports, Weather
+    
+    var description: String {
+        switch self {
+        case .Business: return "Buisness"
+        case .Entertainment: return "Entertainment"
+        case .Graphics: return "Graphics & Design"
+        case .Medical: return "Medical"
+        case .Photo: return "Photo & Video"
+        case .Travel: return "Travel"
+        case .Dev: return "Developer Tools"
+        case .Finance: return "Finance"
+        case .Health: return "Health & Fitness"
+        case .Music: return "Music"
+        case .Productivity: return "Productivity"
+        case .Social: return "Social Networking"
+        case .Utilities: return "Utilities"
+        case .Education: return "Education"
+        case .Games: return "Games"
+        case .Lifestyle: return "Lifestyle"
+        case .News: return "News"
+        case .Reference: return "Reference"
+        case .Sports: return "Sports"
+        case .Weather: return "Weather"
+        }
+    }
+}
+
+struct AppData: Hashable {
+    let name: String
+    let iconName: String
+    let category: AppCategory
+    let version: String
+}
+
 struct ContentView: View {
+    let options: [Options] = [
+        .init(title: "Home", imageName: "house"),
+        .init(title: "App Library", imageName: "square.grid.2x2"),
+        .init(title: "IPA Store", imageName: "arrow.down.circle"),
+        .init(title: "Settings", imageName: "gear"),
+        .init(title: "About", imageName: "info.circle"),
+    ]
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        // Deprecated
+        NavigationView {
+            ListView(options: options)
+            
+            MainView()
+        }
+        .frame(minWidth: 800, minHeight: 500)
+        .toolbar {
+            ToolbarItem(placement: .navigation) {
+                Button(action: toggleSidebar, label: {
+                    Image(systemName: "sidebar.leading")
+                })
+            }
+        }
+        .navigationTitle("Home")
+        
+    }
+    
+    private func toggleSidebar() {
+        NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
+    }
+}
+
+struct ListView: View {
+    let options: [Options]
+    
+    var body: some View {
+        VStack {
+            ForEach(options, id: \.self) { option in
+                HStack {
+                    Image(systemName: option.imageName)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 20)
+                        .foregroundColor(.cyan)
+                    Text(option.title)
+                    Spacer()
+                }
+                .padding([.top, .leading, .trailing])
+                
+            }
+            Spacer()
+        }
+    }
+}
+
+struct LargeAppBannerView: View {
+    let appData: AppData
+    
+    var body: some View {
+        HStack {
+            Image(appData.iconName)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 150, height: 150)
+                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                .shadow(radius: 10)
+                .padding(.all)
+            VStack(alignment: .leading) {
+                Text(appData.name)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                Text("You've played a total of 31.2 hours of \(appData.name) this week, beating last week's record of 12.2 hours!")
+                    .foregroundColor(.white)
+                Spacer()
+                    .frame(height: 20)
+                Text("Ready to play again?")
+                    .foregroundColor(.white)
+                Text("OPEN")
+                    .foregroundColor(.blue)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 5)
+                    .background(
+                        RoundedRectangle(cornerRadius: 20, style: .continuous).fill(Color(cgColor: .white))
+                    )
+            }
+            .padding(.all)
+            Spacer()
+        }
+        .background(LinearGradient(colors: [Color(hue: 180/360, saturation: 1, brightness: 0.8), Color(hue: 200/360, saturation: 1, brightness: 0.8)], startPoint: UnitPoint.topLeading, endPoint: UnitPoint.bottomTrailing))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .shadow(radius: 5)
+    }
+}
+
+struct HalfAppBannerView: View {
+    let appData: AppData
+    
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text(appData.name)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                Text(appData.category.description)
+                    .foregroundColor(.white)
+                Spacer()
+                    .frame(height: 10)
+                Text("OPEN")
+                    .foregroundColor(.blue)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 5)
+                    .background(
+                        RoundedRectangle(cornerRadius: 20, style: .continuous).fill(Color(cgColor: .white))
+                    )
+            }
+            Spacer()
+            Image(appData.iconName)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 80, height: 80)
+                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                .shadow(radius: 10)
+        }
+        .padding(.horizontal)
+        .frame(height: 100, alignment: .leading)
+        .background(RoundedRectangle(cornerRadius: 10, style: .continuous).fill(.green))
+        .shadow(radius: 5)
+    }
+}
+
+struct SmallAppBannerView: View {
+    let appData: AppData
+    
+    var body: some View {
+        HStack {
+            Image(appData.iconName)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 40, height: 40)
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .shadow(radius: 10)
+            VStack(alignment: .leading) {
+                Text(appData.name)
+                Text(appData.version)
+                    .foregroundColor(.gray)
+            }
+            Spacer()
+            Text("GET")
+                .foregroundColor(.blue)
+                .padding(.horizontal, 20)
+                .padding(.vertical, 5)
+                .background(
+                    RoundedRectangle(cornerRadius: 20, style: .continuous).fill(Color(cgColor: .white))
+                )
+        }
+        .frame(height: 50, alignment: .leading)
+    }
+}
+
+struct MainView: View {
+    let GenshinImpact = AppData (name: "Genshin Impact", iconName: "Genshin", category: AppCategory.Games, version: "2.8.0")
+    let AmongUs = AppData (name: "Among Us", iconName: "Among Us", category: AppCategory.Games, version: "1.0")
+    let Twitch = AppData(name: "Twitch", iconName: "Twitch", category: AppCategory.Photo, version: "1.0")
+    
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading) {
+                LargeAppBannerView(appData: GenshinImpact)
+                Spacer()
+                    .frame(height: 20)
+                HStack {
+                    HalfAppBannerView(appData: AmongUs)
+                    Spacer()
+                        .frame(width: 20)
+                    HalfAppBannerView(appData: Twitch)
+                }
+                Divider()
+                    .padding(.vertical)
+                HStack {
+                    Text("Popular IPAs")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                    Spacer()
+                    Text("See All")
+                        .foregroundColor(.cyan)
+                }
+                HStack {
+                    VStack {
+                        SmallAppBannerView(appData: Twitch)
+                        SmallAppBannerView(appData: GenshinImpact)
+                        SmallAppBannerView(appData: Twitch)
+                        SmallAppBannerView(appData: GenshinImpact)
+                        SmallAppBannerView(appData: Twitch)
+                        SmallAppBannerView(appData: GenshinImpact)
+                    }
+                    Spacer()
+                        .frame(width: 40)
+                    VStack {
+                        SmallAppBannerView(appData: AmongUs)
+                        SmallAppBannerView(appData: Twitch)
+                        SmallAppBannerView(appData: Twitch)
+                        SmallAppBannerView(appData: GenshinImpact)
+                        SmallAppBannerView(appData: Twitch)
+                        SmallAppBannerView(appData: GenshinImpact)
+                    }
+                }
+            }
+            .padding(.all)
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            
     }
 }
