@@ -47,7 +47,65 @@ struct ContentView: View {
     var body: some View {
         // Deprecated
         NavigationView {
-            ListView()
+            List {
+                NavigationLink(destination: {
+                    HomeView()
+                        .navigationTitle("Home")
+                }, label: {
+                   SidebarButtonView(title: "Home", iconName: "house")
+                })
+                .padding(.vertical)
+                .buttonStyle(PlainButtonStyle())
+                NavigationLink(destination: {
+                    AppLibraryView()
+                        .navigationTitle("App Library")
+                        .toolbar {
+                            ToolbarItem(placement: .primaryAction) {
+                                Button(action: {}, label: {
+                                    Image(systemName: "square.grid.2x2")
+                                })
+                            }
+                            ToolbarItem(placement: .primaryAction) {
+                                Button(action: {}, label: {
+                                    Image(systemName: "list.bullet")
+                                })
+                            }
+                        }
+                    
+                }, label: {
+                   SidebarButtonView(title: "App Library", iconName: "square.grid.2x2")
+                })
+                .padding(.vertical)
+                .buttonStyle(PlainButtonStyle())
+                NavigationLink(destination: {
+                    IPAStoreView()
+                        .navigationTitle("IPA Store")
+                    
+                }, label: {
+                   SidebarButtonView(title: "IPA Store", iconName: "arrow.down.circle")
+                })
+                .padding(.vertical)
+                .buttonStyle(PlainButtonStyle())
+                NavigationLink(destination: {
+                    SettingsView()
+                        .navigationTitle("Settings")
+                    
+                }, label: {
+                   SidebarButtonView(title: "Settings", iconName: "gear")
+                })
+                .padding(.vertical)
+                .buttonStyle(PlainButtonStyle())
+                NavigationLink(destination: {
+                    AboutView()
+                        .navigationTitle("About")
+                    
+                }, label: {
+                   SidebarButtonView(title: "About", iconName: "info.circle")
+                })
+                .padding(.vertical)
+                .buttonStyle(PlainButtonStyle())
+                Spacer()
+            }
             HomeView()
         }
         .frame(minWidth: 800, minHeight: 500)
@@ -59,6 +117,7 @@ struct ContentView: View {
             }
         }
         .navigationTitle("Home")
+
     }
     
     private func toggleSidebar() {
@@ -78,70 +137,7 @@ struct SidebarButtonView: View {
                 .frame(width: 20)
                 .foregroundColor(.cyan)
             Text(title)
-            Spacer()
-        }
-    }
-}
-
-struct ListView: View {
-    var body: some View {
-        VStack {
-            NavigationLink(destination: {
-                HomeView()
-                    .navigationTitle("Home")
-            }, label: {
-               SidebarButtonView(title: "Home", iconName: "house")
-            })
-            .padding([.top, .leading, .trailing])
-            .buttonStyle(PlainButtonStyle())
-            NavigationLink(destination: {
-                AppLibraryView()
-                    .navigationTitle("App Library")
-                    .toolbar {
-                        ToolbarItem(placement: .primaryAction) {
-                            Button(action: {}, label: {
-                                Image(systemName: "square.grid.2x2")
-                            })
-                        }
-                        ToolbarItem(placement: .primaryAction) {
-                            Button(action: {}, label: {
-                                Image(systemName: "list.bullet")
-                            })
-                        }
-                    }
-                
-            }, label: {
-               SidebarButtonView(title: "App Library", iconName: "square.grid.2x2")
-            })
-            .padding([.top, .leading, .trailing])
-            .buttonStyle(PlainButtonStyle())
-            NavigationLink(destination: {
-                IPAStoreView()
-                    .navigationTitle("IPA Store")
-                
-            }, label: {
-               SidebarButtonView(title: "IPA Store", iconName: "arrow.down.circle")
-            })
-            .padding([.top, .leading, .trailing])
-            .buttonStyle(PlainButtonStyle())
-            NavigationLink(destination: {
-                SettingsView()
-                    .navigationTitle("Settings")
-                
-            }, label: {
-               SidebarButtonView(title: "Settings", iconName: "gear")
-            })
-            .padding([.top, .leading, .trailing])
-            .buttonStyle(PlainButtonStyle())
-            NavigationLink(destination: {
-                AboutView()
-                    .navigationTitle("About")
-                
-            }, label: {
-               SidebarButtonView(title: "About", iconName: "info.circle")
-            })
-            .padding([.top, .leading, .trailing])
-            .buttonStyle(PlainButtonStyle())
+                .foregroundColor(.white)
             Spacer()
         }
     }
@@ -189,6 +185,7 @@ struct LargeAppBannerView: View {
 
 struct HalfAppBannerView: View {
     let appData: AppData
+    let gradient: LinearGradient
     
     var body: some View {
         HStack {
@@ -219,7 +216,7 @@ struct HalfAppBannerView: View {
         }
         .padding(.horizontal)
         .frame(height: 100, alignment: .leading)
-        .background(RoundedRectangle(cornerRadius: 10, style: .continuous).fill(.green))
+        .background(RoundedRectangle(cornerRadius: 10, style: .continuous).fill(gradient))
         .shadow(radius: 5)
     }
 }
@@ -265,10 +262,10 @@ struct HomeView: View {
                 Spacer()
                     .frame(height: 20)
                 HStack {
-                    HalfAppBannerView(appData: AmongUs)
+                    HalfAppBannerView(appData: AmongUs, gradient: LinearGradient(colors: [Color(hue: 50/360, saturation: 1, brightness: 0.8), Color(hue: 10/360, saturation: 1, brightness: 0.8)], startPoint: UnitPoint.topLeading, endPoint: UnitPoint.bottomTrailing))
                     Spacer()
                         .frame(width: 20)
-                    HalfAppBannerView(appData: Twitch)
+                    HalfAppBannerView(appData: Twitch, gradient: LinearGradient(colors: [Color(hue: 270/360, saturation: 1, brightness: 0.8), Color(hue: 290/360, saturation: 1, brightness: 0.8)], startPoint: UnitPoint.topLeading, endPoint: UnitPoint.bottomTrailing))
                 }
                 Divider()
                     .padding(.vertical)
